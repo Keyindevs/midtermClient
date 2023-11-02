@@ -3,6 +3,7 @@ package com.keyin.sclient;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.net.*;
 
 public class ConnectPage implements ActionListener {
     JFrame frame = new JFrame("Client");
@@ -33,10 +34,11 @@ public class ConnectPage implements ActionListener {
 
 
 
+
         //Configure Frame
         frame.add(panel, BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("Main Menu");
+        frame.setTitle("Connection Page");
         frame.pack();
         frame.setVisible(true);
         frame.setLayout(null);
@@ -48,10 +50,16 @@ public class ConnectPage implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == connectButton) {
-            System.out.println("Hello");
+            String ip = IP.getText();
+            String portNum = port.getText();
+            new MainMenu(ip, portNum);
+            System.out.println(ip + " " + portNum);
+            frame.dispose();
         }
 
+
     }
+
 
 
 }
