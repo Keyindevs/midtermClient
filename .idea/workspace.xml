@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="90be35dd-109f-44a0-b7ce-6399cbdb2d25" name="Changes" comment="">
+    <list default="true" id="90be35dd-109f-44a0-b7ce-6399cbdb2d25" name="Changes" comment="ClientCLI">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/keyin/sclient/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/keyin/sclient/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,11 +107,34 @@
       <workItem from="1698238746138" duration="1000" />
       <workItem from="1698679148920" duration="799000" />
       <workItem from="1698763952644" duration="4505000" />
-      <workItem from="1698775587590" duration="19356000" />
+      <workItem from="1698775587590" duration="28029000" />
     </task>
+    <task id="LOCAL-00001" summary="ClientCLI">
+      <option name="closed" value="true" />
+      <created>1698889676240</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1698889676240</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="ClientCLI" />
+    <option name="LAST_COMMIT_MESSAGE" value="ClientCLI" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/target/classes/com/keyin/sclient/ClientCLI.class</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
