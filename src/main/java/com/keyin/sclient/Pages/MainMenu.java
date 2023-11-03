@@ -1,4 +1,4 @@
-package com.keyin.sclient;
+package com.keyin.sclient.Pages;
 
 import javax.swing.*;
 import java.awt.*;
@@ -70,15 +70,12 @@ public class MainMenu implements ActionListener{
 
 
 
-
-
-
-
-
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        // if viewCitiesButton is clicked, display the cities page and pass the IP and port to the page
+        if (e.getSource() == viewCitiesButton) {
+            new CitiesPage();
+            frame.dispose();
+        }
     }
 }
