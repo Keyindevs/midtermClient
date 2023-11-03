@@ -68,7 +68,7 @@ public class Connection {
             return false;
         }
     }
-
+//hi
     // get list of cities from server
 
     public static String getCities() {
