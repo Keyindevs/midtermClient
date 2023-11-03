@@ -1,6 +1,5 @@
 package com.keyin.sclient;
 import java.net.*;
-//class to connect to HTTP server and send requests
 public class Connection {
     private String url;
     private String port;
@@ -10,8 +9,6 @@ public class Connection {
         this.url = url;
         this.port = port;
         this.path = path;
-
-
     }
 
     public void setUrl(String url) {
@@ -37,6 +34,32 @@ public class Connection {
     public String getPath() {
         return this.path;
     }
+
+    // ping server to check if it is online
+
+    public boolean pingServer() {
+        int intport = Integer.parseInt(this.port);
+        try {
+            if (this.path == null) {
+                this.path = "";
+            }
+            URI uri = new URI("http", null, this.url, intport, this.path, null, null);
+            HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
+            connection.setRequestMethod("GET");
+            connection.connect();
+            int responseCode = connection.getResponseCode();
+            if(responseCode == 200) {
+                System.out.println("Server is online.");
+            } else {
+                System.out.println("Server is offline.");
+            }
+            return responseCode == 200;
+
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 
 
 }
