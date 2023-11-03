@@ -13,6 +13,17 @@ public class MainMenu implements ActionListener{
     JButton viewAirportsButton = new JButton("View Airports");
     JButton viewAircraftButton = new JButton("View Aircraft");
 
+    JButton searchFlightsButton = new JButton("Search Flights");
+    JButton searchPassengersButton = new JButton("Search Passengers");
+    JButton searchCitiesButton = new JButton("Search Cities");
+    JButton searchAirportsButton = new JButton("Search Airports");
+    JButton searchAircraftButton = new JButton("Search Aircraft");
+
+    JButton addFlightsButton = new JButton("Add Flights");
+    JButton addPassengersButton = new JButton("Add Passengers");
+    JButton addCitiesButton = new JButton("Add Cities");
+    JButton addAirportsButton = new JButton("Add Airports");
+    JButton addAircraftButton = new JButton("Add Aircraft");
 
     public MainMenu(String IP, String port) {
 
@@ -21,15 +32,49 @@ public class MainMenu implements ActionListener{
         panel.setLayout(new GridLayout(0, 1));
         panel.add(new JLabel(IP + ":" + port));
         panel.add(viewAircraftButton);
+        panel.add(searchAircraftButton);
+        panel.add(addAircraftButton);
         panel.add(viewAirportsButton);
+        panel.add(searchAirportsButton);
+        panel.add(addAirportsButton);
         panel.add(viewCitiesButton);
+        panel.add(searchCitiesButton);
+        panel.add(addCitiesButton);
         panel.add(viewPassengersButton);
+        panel.add(searchPassengersButton);
+        panel.add(addPassengersButton);
         panel.add(viewFlightsButton);
+        panel.add(searchFlightsButton);
+        panel.add(addFlightsButton);
         viewAircraftButton.addActionListener(this);
         viewAirportsButton.addActionListener(this);
         viewCitiesButton.addActionListener(this);
         viewPassengersButton.addActionListener(this);
         viewFlightsButton.addActionListener(this);
+        searchAircraftButton.addActionListener(this);
+        searchAirportsButton.addActionListener(this);
+        searchPassengersButton.addActionListener(this);
+        searchFlightsButton.addActionListener(this);
+        addAircraftButton.addActionListener(this);
+        addAirportsButton.addActionListener(this);
+        addCitiesButton.addActionListener(this);
+        addPassengersButton.addActionListener(this);
+        addFlightsButton.addActionListener(this);
+        viewAircraftButton.setFocusable(false);
+        viewAirportsButton.setFocusable(false);
+        viewCitiesButton.setFocusable(false);
+        viewPassengersButton.setFocusable(false);
+        viewFlightsButton.setFocusable(false);
+        searchAircraftButton.setFocusable(false);
+        searchAirportsButton.setFocusable(false);
+        searchCitiesButton.setFocusable(false);
+        searchPassengersButton.setFocusable(false);
+        searchFlightsButton.setFocusable(false);
+        addAircraftButton.setFocusable(false);
+        addAirportsButton.setFocusable(false);
+        addCitiesButton.setFocusable(false);
+        addPassengersButton.setFocusable(false);
+        addFlightsButton.setFocusable(false);
         viewAircraftButton.setFocusable(false);
         viewAirportsButton.setFocusable(false);
         viewCitiesButton.setFocusable(false);
@@ -46,7 +91,7 @@ public class MainMenu implements ActionListener{
         frame.pack();
         frame.setVisible(true);
         frame.setLayout(null);
-        frame.setSize(420,420);
+        frame.setSize(600,600);
 
 
 

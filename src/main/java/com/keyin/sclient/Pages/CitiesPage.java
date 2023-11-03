@@ -32,7 +32,7 @@ public class CitiesPage {
         panel.setBackground(Color.white);
         panel.add(scrollPane);
 
-        frame.setSize(500, 500);
+        frame.setSize(600, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(panel);
         frame.setVisible(true);
