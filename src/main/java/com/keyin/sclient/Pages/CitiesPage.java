@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import static com.keyin.sclient.Connection.*;
+
 public class CitiesPage {
     JFrame frame = new JFrame("Client");
 
@@ -40,32 +42,10 @@ public class CitiesPage {
 
 
 
-    public static List<String> getCityNamesAndStates(String jsonData) {
-        List<String> cityNamesAndStates = new ArrayList<>();
 
-        Set<String> uniqueCities = new HashSet<>();
-        JSONArray jsonArray = new JSONArray(jsonData);
 
-        for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject cityObject = jsonArray.getJSONObject(i);
-            String cityName = cityObject.getString("name");
-            String state = cityObject.getString("state");
 
-            // Filter out cities with name or state containing "null" or "default"
-            if (!cityName.toLowerCase().contains("null") && !state.toLowerCase().contains("null") &&
-                    !cityName.toLowerCase().contains("default") && !state.toLowerCase().contains("default")) {
 
-                // Check if this city is unique (based on name and state)
-                String uniqueKey = cityName + state;
-                if (!uniqueCities.contains(uniqueKey)) {
-                    uniqueCities.add(uniqueKey);
-                    cityNamesAndStates.add(cityName + ", " + state);
-                }
-            }
-        }
-
-        return cityNamesAndStates;
-    }
 
 
 
