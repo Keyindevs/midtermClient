@@ -1,14 +1,16 @@
-package com.keyin.sclient;
+package com.keyin.sclient.Pages;
+
+import com.keyin.sclient.Connection;
+import com.keyin.sclient.Pages.MainMenu;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.net.*;
 
 public class ConnectPage implements ActionListener {
     JFrame frame = new JFrame("Client");
-    JTextField IP = new JTextField();
-    JTextField port = new JTextField();
+    JTextField IP = new JTextField("localhost");
+    JTextField port = new JTextField("8080");
     JButton connectButton = new JButton("Connect");
 
     public ConnectPage() {
@@ -39,7 +41,7 @@ public class ConnectPage implements ActionListener {
         frame.pack();
         frame.setVisible(true);
         frame.setLayout(null);
-        frame.setSize(420,420);
+        frame.setSize(600,600);
 
 
     }
@@ -49,10 +51,8 @@ public class ConnectPage implements ActionListener {
         if (e.getSource() == connectButton) {
             String ip = IP.getText();
             String portNum = port.getText();
-            //add check for valid ip and port using regex
             if (ip.matches("^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$") && portNum.matches("^[0-9]*$")) {
-                // check if server is online and if so, open main menu
-                Connection connection = new Connection(ip, portNum, null);
+                Connection connection = new Connection(ip, portNum, null, null);
                 if (connection.pingServer()) {
                     new MainMenu(ip, portNum);
                     frame.dispose();
@@ -60,8 +60,19 @@ public class ConnectPage implements ActionListener {
                     JOptionPane.showMessageDialog(frame, "Server is offline.");
                 }
             }
-            if(ip.equals("localhost") && portNum.matches("^[0-9]*$")) {
-                Connection connection = new Connection(ip, portNum, null);
+            else if(ip.equals("localhost") && portNum.matches("^[0-9]*$")) {
+                Connection connection = new Connection(ip, portNum, null, null);
+                if (connection.pingServer()) {
+                    new MainMenu(ip, portNum);
+                    frame.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Server is offline.");
+                }
+            }
+            else if(ip.equals("") && portNum.equals("")) {
+                ip = "localhost";
+                portNum = "8080";
+                Connection connection = new Connection(ip, portNum, null, null);
                 if (connection.pingServer()) {
                     new MainMenu(ip, portNum);
                     frame.dispose();
