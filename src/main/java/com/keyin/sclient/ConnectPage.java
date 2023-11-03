@@ -3,6 +3,7 @@ package com.keyin.sclient;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.net.*;
 
 public class ConnectPage implements ActionListener {
     JFrame frame = new JFrame("Client");
@@ -31,12 +32,10 @@ public class ConnectPage implements ActionListener {
         connectButton.setFocusable(false);
 
 
-
-
         //Configure Frame
         frame.add(panel, BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("Main Menu");
+        frame.setTitle("Connection Page");
         frame.pack();
         frame.setVisible(true);
         frame.setLayout(null);
@@ -48,10 +47,35 @@ public class ConnectPage implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == connectButton) {
-            System.out.println("Hello");
-        }
+            String ip = IP.getText();
+            String portNum = port.getText();
+            //add check for valid ip and port using regex
+            if (ip.matches("^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$") && portNum.matches("^[0-9]*$")) {
+                // check if server is online and if so, open main menu
+                Connection connection = new Connection(ip, portNum, null);
+                if (connection.pingServer()) {
+                    new MainMenu(ip, portNum);
+                    frame.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Server is offline.");
+                }
+            }
+            if(ip.equals("localhost") && portNum.matches("^[0-9]*$")) {
+                Connection connection = new Connection(ip, portNum, null);
+                if (connection.pingServer()) {
+                    new MainMenu(ip, portNum);
+                    frame.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Server is offline.");
+                }
+            }
+            else {
+                JOptionPane.showMessageDialog(frame, "Please enter a valid IP address and port number.");
+            }
+
 
     }
 
 
-}
+
+}}
