@@ -1,4 +1,5 @@
 package com.keyin.sclient;
+import java.io.*;
 import java.net.*;
 public class Connection {
     private static String url;
@@ -69,19 +70,24 @@ public class Connection {
             connection.setRequestMethod("GET");
             connection.connect();
             int responseCode = connection.getResponseCode();
-            if(responseCode == 200) {
+            if (responseCode == 200) {
                 System.out.println("Server is online.");
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in.close();
+                System.out.println(response);
+                return response.toString();
             } else {
                 System.out.println("Server is offline.");
+                return "Server Offline";
             }
-            System.out.println(connection.toString());
-            return "fart";
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
+            e.printStackTrace();
             return "Error";
         }
     }
-
-
-
 }

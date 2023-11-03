@@ -60,7 +60,7 @@ public class ConnectPage implements ActionListener {
                     JOptionPane.showMessageDialog(frame, "Server is offline.");
                 }
             }
-            if(ip.equals("localhost") && portNum.matches("^[0-9]*$")) {
+            else if(ip.equals("localhost") && portNum.matches("^[0-9]*$")) {
                 Connection connection = new Connection(ip, portNum, null, null);
                 if (connection.pingServer()) {
                     new MainMenu(ip, portNum);
@@ -69,7 +69,7 @@ public class ConnectPage implements ActionListener {
                     JOptionPane.showMessageDialog(frame, "Server is offline.");
                 }
             }
-            if(ip.equals("") && portNum.equals("")) {
+            else if(ip.equals("") && portNum.equals("")) {
                 ip = "localhost";
                 portNum = "8080";
                 Connection connection = new Connection(ip, portNum, null, null);
