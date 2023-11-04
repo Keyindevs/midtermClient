@@ -204,10 +204,22 @@ public class MainMenu implements ActionListener{
             frame.dispose();
         }
 
-//        if (e.getSource() == viewAircraftButton) {
-//            new AircraftPage();
-//            frame.dispose();
-//        }
+        if (e.getSource() == addAircraftButton) {
+            String type = JOptionPane.showInputDialog("Enter aircraft type");
+            String airlineName = JOptionPane.showInputDialog("Enter airline name");
+            int numberOfPassengers = Integer.parseInt(JOptionPane.showInputDialog("Enter number of passengers", 0));
+            String airport = JOptionPane.showInputDialog("Enter airport code");
+            String id = JOptionPane.showInputDialog("Enter aircraft id");
+            if (type != null && airlineName != null && numberOfPassengers != 0 && airport != null && id != null) {
+                Connection.addAircraft(type, airlineName, numberOfPassengers, airport, id);
+                JOptionPane.showMessageDialog(frame, "Aircraft added successfully.");
+                new MainMenu();
+                frame.dispose();
+            } else {
+                JOptionPane.showMessageDialog(frame, "Please enter valid information.");
+            }
+        }
+
         if (e.getSource() == viewPassengersButton) {
             new PassengersPage();
             frame.dispose();
