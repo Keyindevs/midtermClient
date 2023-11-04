@@ -5,17 +5,18 @@ import com.keyin.sclient.Connection;
 import javax.swing.*;
 import java.awt.*;
 
+
 public class SearchFlightsPage {
 
     JFrame frame = new JFrame("Client");
     JButton backButton = new JButton("Back");
-    public SearchFlightsPage(String passenger){
-        String city = Connection.getPassengerFlights(passenger);
-        JTextArea textArea = new JTextArea(city);
+    public SearchFlightsPage(String destination){
+
+
+        JTextArea textArea = new JTextArea();
         textArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(textArea);
         scrollPane.setBounds(10, 20, 400, 400);
-
 
         JPanel panel = new JPanel();
         panel.setLayout(null);
@@ -32,4 +33,6 @@ public class SearchFlightsPage {
         frame.add(panel);
         frame.setVisible(true);
     }
-}
+
+    //method to get the aircraft 
+    }
