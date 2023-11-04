@@ -68,7 +68,7 @@ public class Connection {
             return false;
         }
     }
-//hi
+
     // get list of cities from server
 
     public static String getCities() {
@@ -231,7 +231,9 @@ public class Connection {
                 BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 StringBuilder response = new StringBuilder();
                 String inputLine;
-                while ((inputLine = in.readLine()) != null);
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
                 in.close();
 
                 return response.toString();

@@ -5,12 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90be35dd-109f-44a0-b7ce-6399cbdb2d25" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/keyin/sclient/Pages/AirportsPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/keyin/sclient/Pages/SearchAirportsPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/keyin/sclient/Pages/PassengersPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/keyin/sclient/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/keyin/sclient/Connection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/keyin/sclient/Pages/CitiesPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/keyin/sclient/Pages/CitiesPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/keyin/sclient/Pages/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/keyin/sclient/Pages/MainMenu.java" afterDir="false" />
+    </list>
+    <list id="4ac98624-0156-44da-824d-731deceeda76" name="Changes by School" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/keyin/sclient/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/keyin/sclient/Connection.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +33,14 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/com/keyin/sclient/Connection.java">
+      <ranges>
+        <range start1="70" end1="71" start2="70" end2="71" changelist="90be35dd-109f-44a0-b7ce-6399cbdb2d25" />
+        <range start1="233" end1="234" start2="233" end2="236" changelist="4ac98624-0156-44da-824d-731deceeda76" />
+      </ranges>
+    </file>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -50,7 +59,8 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "buttonfunctions",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "buttonfunctions2",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/School/Programs/Semester 4/Algorithms and Data Structures/Sprint 1/midtermClient",
     "node.js.detected.package.eslint": "true",
@@ -101,5 +111,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
