@@ -25,7 +25,8 @@ public class MainMenu implements ActionListener{
     JButton addAirportsButton = new JButton("Add Airports");
     JButton addAircraftButton = new JButton("Add Aircraft");
 
-    // Add popup text input field for search and add buttons
+    JButton backButton = new JButton("Back");
+
 
 
     public MainMenu(String IP, String port) {
@@ -49,6 +50,7 @@ public class MainMenu implements ActionListener{
         panel.add(viewFlightsButton);
         panel.add(searchFlightsButton);
         panel.add(addFlightsButton);
+        panel.add(backButton);
         viewAircraftButton.addActionListener(this);
         viewAirportsButton.addActionListener(this);
         viewCitiesButton.addActionListener(this);
@@ -137,6 +139,7 @@ public class MainMenu implements ActionListener{
             addCitiesButton.addActionListener(this);
             addPassengersButton.addActionListener(this);
             addFlightsButton.addActionListener(this);
+            backButton.addActionListener(this);
             viewAircraftButton.setFocusable(false);
             viewAirportsButton.setFocusable(false);
             viewCitiesButton.setFocusable(false);
@@ -157,6 +160,7 @@ public class MainMenu implements ActionListener{
             viewCitiesButton.setFocusable(false);
             viewPassengersButton.setFocusable(false);
             viewFlightsButton.setFocusable(false);
+            backButton.setFocusable(false);
 
 
 
@@ -195,6 +199,10 @@ public class MainMenu implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == backButton) {
+            new ConnectPage();
+            frame.dispose();
+        }
         if (e.getSource() == viewCitiesButton) {
             new CitiesPage();
             frame.dispose();
@@ -203,6 +211,7 @@ public class MainMenu implements ActionListener{
             new AirportsPage();
             frame.dispose();
         }
+
 //        if (e.getSource() == viewAircraftButton) {
 //            new AircraftPage();
 //            frame.dispose();
@@ -260,6 +269,7 @@ public class MainMenu implements ActionListener{
 //            new AddFlightsPage();
 //            frame.dispose();
 //        }
-//
+
+
     }
 }

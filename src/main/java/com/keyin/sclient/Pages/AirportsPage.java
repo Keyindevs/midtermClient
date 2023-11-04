@@ -33,13 +33,16 @@ public class AirportsPage implements ActionListener {
         panel.setLayout(null);
         panel.setBackground(Color.white);
         panel.add(scrollPane);
+        panel.add(backButton);
+        backButton.setBounds(10, 450, 80, 25);
+        backButton.addActionListener(this);
 
         frame.setSize(600, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(panel);
         frame.setVisible(true);
-
     }
+
 
     private List<String> getAirportNamesAndCities(String airports) {
         Set<String> uniqueEntries = new HashSet<>();

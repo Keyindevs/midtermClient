@@ -9,6 +9,8 @@ public class SearchAirportsPage {
 
     public SearchAirportsPage(String airports){
         JPanel panel = new JPanel();
+
+        JTextArea textArea = new JTextArea(airports);
         panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
         panel.setLayout(new GridLayout(0, 1));
         panel.add(new JLabel(airports));
@@ -17,4 +19,5 @@ public class SearchAirportsPage {
         frame.add(panel);
         frame.setVisible(true);
     }
+
 }

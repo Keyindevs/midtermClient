@@ -6,14 +6,18 @@ import org.json.JSONObject;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import static com.keyin.sclient.Connection.*;
 
-public class CitiesPage {
+public class CitiesPage implements ActionListener {
     JFrame frame = new JFrame("Client");
+
+    JButton backButton = new JButton("Back");
 
     public CitiesPage() {
         String cities = Connection.getCities();
@@ -47,6 +51,12 @@ public class CitiesPage {
 
 
 
-
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == backButton) {
+            new MainMenu();
+            frame.dispose();
+        }
+    }
 
 }
