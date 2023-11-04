@@ -1,4 +1,5 @@
 package com.keyin.sclient;
+import com.keyin.sclient.Pages.MainMenu;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -250,7 +251,7 @@ public class Connection {
 
     public static String getPassengerbyLastName(String name){
         try {
-            URI uri = new URI("http", null, url, Integer.parseInt(port), "/passenger?lastName="+name, null, null);
+            URI uri = new URI("http", null, url, Integer.parseInt(port), "/passenger"+name, null, null);
             HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
             connection.setRequestMethod("GET");
             connection.connect();
@@ -274,4 +275,23 @@ public class Connection {
             e.printStackTrace();
             return "Error";
 
-        }}}
+        }}
+
+    public static void addAircraft(String type, String airlineName, int numberOfPassengers, String airport, String id){
+        try {
+            URI uri = new URI("http", null, url, Integer.parseInt(port), "/aircraft", "type="+type+"&airlineName=" + airlineName + "&numberOfPassengers=" + numberOfPassengers + "&airport=" + airport + "&id=" + id, null);
+            System.out.println(uri);
+            HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
+            connection.setRequestMethod("POST");
+            connection.connect();
+            int responseCode = connection.getResponseCode();
+            if (responseCode == 200) {
+
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                in.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
