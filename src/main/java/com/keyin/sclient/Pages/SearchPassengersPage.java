@@ -4,15 +4,11 @@ import javax.swing.*;
 import com.keyin.sclient.Connection;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import java.awt.event.*;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 public class SearchPassengersPage implements ActionListener {
     JFrame frame = new JFrame("Client");
     JButton backButton = new JButton("Back");
