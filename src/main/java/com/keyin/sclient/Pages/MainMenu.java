@@ -216,10 +216,10 @@ public class MainMenu implements ActionListener{
 //            new AircraftPage();
 //            frame.dispose();
 //        }
-//        if (e.getSource() == viewPassengersButton) {
-//            new PassengersPage();
-//            frame.dispose();
-//        }
+        if (e.getSource() == viewPassengersButton) {
+            new PassengersPage();
+            frame.dispose();
+        }
 //        if (e.getSource() == viewFlightsButton) {
 //            new FlightsPage();
 //            frame.dispose();
