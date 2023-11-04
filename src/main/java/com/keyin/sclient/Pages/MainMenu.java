@@ -13,7 +13,7 @@ public class MainMenu implements ActionListener{
     JButton viewAirportsButton = new JButton("View Airports");
     JButton viewAircraftButton = new JButton("View Aircraft");
 
-    JButton searchFlightsButton = new JButton("Search Passenger Flights");
+    JButton searchFlightsButton = new JButton("Search Passenger Planes");
     JButton searchPassengersButton = new JButton("Search Passengers");
     JButton searchCitiesButton = new JButton("Search City");
     JButton searchAirportsButton = new JButton("Search Airports");
@@ -21,7 +21,7 @@ public class MainMenu implements ActionListener{
 
     JButton addFlightsButton = new JButton("Add Flights");
     JButton addPassengersButton = new JButton("Add Passengers");
-    JButton addCitiesButton = new JButton("Add Cities");
+    JButton addCitiesButton = new JButton("Add City");
     JButton addAirportsButton = new JButton("Add Airports");
     JButton addAircraftButton = new JButton("Add Aircraft");
 
@@ -189,21 +189,6 @@ public class MainMenu implements ActionListener{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == backButton) {
@@ -251,11 +236,11 @@ public class MainMenu implements ActionListener{
             }
         }
 
-//        if (e.getSource() == searchAircraftButton) {
-//            String aircraft = JOptionPane.showInputDialog("Enter Airport Code");
-//            new SearchAircraftPage(aircraft);
-//            frame.dispose();
-//        }
+        if (e.getSource() == searchAircraftButton) {
+            String aircraft = JOptionPane.showInputDialog("Enter Airport Code");
+            new SearchAircraftPage(aircraft);
+            frame.dispose();
+        }
 
         if (e.getSource() == searchPassengersButton) {
             String lastName = JOptionPane.showInputDialog("Enter passenger last name");
@@ -269,8 +254,10 @@ public class MainMenu implements ActionListener{
         }
 
         if (e.getSource() == searchFlightsButton) {
-            String passengerName = JOptionPane.showInputDialog("Enter passenger Identification");
-            new SearchFlightsPage(passengerName);
+            String firstName = JOptionPane.showInputDialog("Enter passenger Identification");
+            String lastName = JOptionPane.showInputDialog("Enter passenger last name");
+            String homeTown = JOptionPane.showInputDialog("Enter passenger hometown");
+            new SearchPassengersPlanes(firstName, lastName, homeTown);
             frame.dispose();
         }
         if (e.getSource() == addCitiesButton) {
