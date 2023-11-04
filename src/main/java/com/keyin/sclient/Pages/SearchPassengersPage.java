@@ -45,7 +45,7 @@ public class SearchPassengersPage implements ActionListener {
 
 
 
-    private List<String> getPassengerInformation(String passengers) {
+    public static List<String> getPassengerInformation(String passengers) {
         List<String> passengerInfoList = new ArrayList<>();
 
         JSONArray passengersArray = new JSONArray(passengers);

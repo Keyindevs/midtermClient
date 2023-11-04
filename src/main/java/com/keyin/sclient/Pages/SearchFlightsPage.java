@@ -1,16 +1,33 @@
 package com.keyin.sclient.Pages;
 
 import com.keyin.sclient.Connection;
+import org.json.JSONArray;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.keyin.sclient.Pages.SearchPassengersPage.getPassengerInformation;
 
 
 public class SearchFlightsPage {
 
     JFrame frame = new JFrame("Client");
     JButton backButton = new JButton("Back");
-    public SearchFlightsPage(String destination){
+    public SearchFlightsPage(String lastName){
+        String passengers = Connection.getPassengers();
+        java.util.List<String> PassengerInformation = getPassengerInformation(passengers);
+        List<String> filteredPassengerInformation = new ArrayList<>();
+        for (String passengerInfo : PassengerInformation) {
+            if (passengerInfo.contains(lastName)) {
+                filteredPassengerInformation.add(passengerInfo);
+            }
+        }
+        String flightsTaken = filteredPassengerInformation.get(3);
+        String flights = Connection.getFlights();
+        List<String> flightInformation = getFlightInformation(flights, flightsTaken);
+
 
 
         JTextArea textArea = new JTextArea();
@@ -34,5 +51,9 @@ public class SearchFlightsPage {
         frame.setVisible(true);
     }
 
-    //method to get the aircraft 
+    private List<String> getFlightInformation(String flights, String flightsTaken) {
+
     }
+
+
+}
