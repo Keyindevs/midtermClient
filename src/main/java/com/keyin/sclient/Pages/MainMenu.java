@@ -233,10 +233,16 @@ public class MainMenu implements ActionListener{
 //            new SearchAircraftPage();
 //            frame.dispose();
 //        }
-//        if (e.getSource() == searchPassengersButton) {
-//            new SearchPassengersPage();
-//            frame.dispose();
-//        }
+        if (e.getSource() == searchPassengersButton) {
+            String lastName = JOptionPane.showInputDialog("Enter passenger last name");
+            if (lastName != null) {
+                new SearchPassengersPage(lastName);
+                frame.dispose();
+            } else {
+                JOptionPane.showMessageDialog(frame, "Please enter a valid last name.");
+            }
+
+        }
 //        if (e.getSource() == searchFlightsButton) {
 //            new SearchFlightsPage();
 //            frame.dispose();

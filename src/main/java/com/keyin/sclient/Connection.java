@@ -245,4 +245,33 @@ public class Connection {
             e.printStackTrace();
             return "Error";
 
+        }}
+
+
+    public static String getPassengerbyLastName(String name){
+        try {
+            URI uri = new URI("http", null, url, Integer.parseInt(port), "/passenger?lastName="+name, null, null);
+            HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
+            connection.setRequestMethod("GET");
+            connection.connect();
+            int responseCode = connection.getResponseCode();
+            if (responseCode == 200) {
+                System.out.println("Server is online.");
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in.close();
+
+                return response.toString();
+            } else {
+                System.out.println("Server is offline.");
+                return "Server Offline";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Error";
+
         }}}

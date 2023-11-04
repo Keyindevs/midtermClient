@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="90be35dd-109f-44a0-b7ce-6399cbdb2d25" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/keyin/sclient/Pages/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/keyin/sclient/Pages/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/keyin/sclient/Pages/SearchPassengersPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/keyin/sclient/Pages/SearchPassengersPage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +59,20 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="ClientCLI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.keyin.sclient.ClientCLI" />
+      <module name="midtermClient" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.keyin.sclient.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.keyin.sclient.Main" />
       <module name="midtermClient" />
@@ -75,6 +88,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ClientCLI" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -91,7 +105,7 @@
       <workItem from="1698679148920" duration="799000" />
       <workItem from="1698763952644" duration="4505000" />
       <workItem from="1698933720643" duration="7813000" />
-      <workItem from="1699017324430" duration="26024000" />
+      <workItem from="1699017324430" duration="28304000" />
     </task>
     <servers />
   </component>
