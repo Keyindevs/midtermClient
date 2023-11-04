@@ -385,7 +385,7 @@ public class Connection {
 
     public static void addCity(String name, String state, int population){
         try {
-            URI uri = new URI("http", null, url, Integer.parseInt(port), "/city", "name="+name+"state="+state+"population="+population, null);
+            URI uri = new URI("http", null, url, Integer.parseInt(port), "/city", "name="+name+"&state="+state+"&population="+population, null);
             HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
             connection.setRequestMethod("POST");
             connection.connect();
