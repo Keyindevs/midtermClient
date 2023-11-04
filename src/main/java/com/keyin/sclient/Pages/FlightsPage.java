@@ -45,7 +45,7 @@ public class FlightsPage{
 
     }
 
-    private List<String> getFlightInformation(String flights) {
+    static List<String> getFlightInformation(String flights) {
         List<String> flightInfoList = new java.util.ArrayList<>();
 
         org.json.JSONArray flightsArray = new org.json.JSONArray(flights);
