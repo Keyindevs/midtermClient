@@ -11,7 +11,6 @@ public class MainMenu implements ActionListener{
     JButton viewPassengersButton = new JButton("View Passengers");
     JButton viewCitiesButton = new JButton("View Cities");
     JButton viewAirportsButton = new JButton("View Airports");
-    JButton viewAircraftButton = new JButton("View Aircraft");
 
     JButton searchFlightsButton = new JButton("Search Flights");
     JButton searchPassengersButton = new JButton("Search Passengers");
@@ -35,7 +34,7 @@ public class MainMenu implements ActionListener{
         panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
         panel.setLayout(new GridLayout(0, 1));
         panel.add(new JLabel(IP + ":" + port));
-        panel.add(viewAircraftButton);
+
         panel.add(searchAircraftButton);
         panel.add(addAircraftButton);
         panel.add(viewAirportsButton);
@@ -51,7 +50,6 @@ public class MainMenu implements ActionListener{
         panel.add(searchFlightsButton);
         panel.add(addFlightsButton);
         panel.add(backButton);
-        viewAircraftButton.addActionListener(this);
         viewAirportsButton.addActionListener(this);
         viewCitiesButton.addActionListener(this);
         viewPassengersButton.addActionListener(this);
@@ -65,7 +63,6 @@ public class MainMenu implements ActionListener{
         addCitiesButton.addActionListener(this);
         addPassengersButton.addActionListener(this);
         addFlightsButton.addActionListener(this);
-        viewAircraftButton.setFocusable(false);
         viewAirportsButton.setFocusable(false);
         viewCitiesButton.setFocusable(false);
         viewPassengersButton.setFocusable(false);
@@ -80,7 +77,6 @@ public class MainMenu implements ActionListener{
         addCitiesButton.setFocusable(false);
         addPassengersButton.setFocusable(false);
         addFlightsButton.setFocusable(false);
-        viewAircraftButton.setFocusable(false);
         viewAirportsButton.setFocusable(false);
         viewCitiesButton.setFocusable(false);
         viewPassengersButton.setFocusable(false);
@@ -110,7 +106,6 @@ public class MainMenu implements ActionListener{
             panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
             panel.setLayout(new GridLayout(0, 1));
             panel.add(new JLabel(IP + ":" + port));
-            panel.add(viewAircraftButton);
             panel.add(searchAircraftButton);
             panel.add(addAircraftButton);
             panel.add(viewAirportsButton);
@@ -125,7 +120,6 @@ public class MainMenu implements ActionListener{
             panel.add(viewFlightsButton);
             panel.add(searchFlightsButton);
             panel.add(addFlightsButton);
-            viewAircraftButton.addActionListener(this);
             viewAirportsButton.addActionListener(this);
             viewCitiesButton.addActionListener(this);
             viewPassengersButton.addActionListener(this);
@@ -140,7 +134,6 @@ public class MainMenu implements ActionListener{
             addPassengersButton.addActionListener(this);
             addFlightsButton.addActionListener(this);
             backButton.addActionListener(this);
-            viewAircraftButton.setFocusable(false);
             viewAirportsButton.setFocusable(false);
             viewCitiesButton.setFocusable(false);
             viewPassengersButton.setFocusable(false);
@@ -155,7 +148,6 @@ public class MainMenu implements ActionListener{
             addCitiesButton.setFocusable(false);
             addPassengersButton.setFocusable(false);
             addFlightsButton.setFocusable(false);
-            viewAircraftButton.setFocusable(false);
             viewAirportsButton.setFocusable(false);
             viewCitiesButton.setFocusable(false);
             viewPassengersButton.setFocusable(false);
