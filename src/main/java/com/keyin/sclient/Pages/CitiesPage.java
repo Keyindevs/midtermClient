@@ -34,6 +34,12 @@ public class CitiesPage implements ActionListener {
         scrollPane.setBounds(10, 20, 400, 400);
 
         JPanel panel = new JPanel();
+        panel.add(backButton);
+        backButton.setBounds(10, 450, 80, 25);
+        backButton.addActionListener(e -> {
+            new MainMenu();
+            frame.dispose();
+        });
         panel.setLayout(null);
         panel.setBackground(Color.white);
         panel.add(scrollPane);
@@ -53,10 +59,7 @@ public class CitiesPage implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == backButton) {
-            new MainMenu();
-            frame.dispose();
-        }
+
     }
 
 }

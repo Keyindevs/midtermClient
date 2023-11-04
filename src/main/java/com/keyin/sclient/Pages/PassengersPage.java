@@ -33,7 +33,12 @@ public class PassengersPage implements ActionListener {
         panel.setLayout(null);
         panel.setBackground(Color.white);
         panel.add(scrollPane);
-
+        panel.add(backButton);
+        backButton.setBounds(10, 450, 80, 25);
+        backButton.addActionListener(e -> {
+            new MainMenu();
+            frame.dispose();
+        });
         frame.setSize(600, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(panel);
@@ -75,9 +80,6 @@ public class PassengersPage implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == backButton) {
-            new MainMenu();
-            frame.dispose();
-        }
+
     }
 }
