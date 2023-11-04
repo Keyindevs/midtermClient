@@ -6,12 +6,18 @@ import org.json.JSONObject;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-public class CitiesPage {
+import static com.keyin.sclient.Connection.*;
+
+public class CitiesPage implements ActionListener {
     JFrame frame = new JFrame("Client");
+
+    JButton backButton = new JButton("Back");
 
     public CitiesPage() {
         String cities = Connection.getCities();
@@ -32,7 +38,7 @@ public class CitiesPage {
         panel.setBackground(Color.white);
         panel.add(scrollPane);
 
-        frame.setSize(500, 500);
+        frame.setSize(600, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(panel);
         frame.setVisible(true);
@@ -40,33 +46,17 @@ public class CitiesPage {
 
 
 
-    public static List<String> getCityNamesAndStates(String jsonData) {
-        List<String> cityNamesAndStates = new ArrayList<>();
 
-        Set<String> uniqueCities = new HashSet<>();
-        JSONArray jsonArray = new JSONArray(jsonData);
 
-        for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject cityObject = jsonArray.getJSONObject(i);
-            String cityName = cityObject.getString("name");
-            String state = cityObject.getString("state");
 
-            // Filter out cities with name or state containing "null" or "default"
-            if (!cityName.toLowerCase().contains("null") && !state.toLowerCase().contains("null") &&
-                    !cityName.toLowerCase().contains("default") && !state.toLowerCase().contains("default")) {
 
-                // Check if this city is unique (based on name and state)
-                String uniqueKey = cityName + state;
-                if (!uniqueCities.contains(uniqueKey)) {
-                    uniqueCities.add(uniqueKey);
-                    cityNamesAndStates.add(cityName + ", " + state);
-                }
-            }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == backButton) {
+            new MainMenu();
+            frame.dispose();
         }
-
-        return cityNamesAndStates;
     }
-
-
 
 }
