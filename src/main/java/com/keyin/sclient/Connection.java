@@ -5,10 +5,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.*;
 import java.net.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Connection {
     private static String url;
@@ -217,7 +214,6 @@ public class Connection {
 
     public static List<String> getAircraftOnPremise(String code) {
         try {
-            List<String> aircraftOnPremise = new ArrayList<>();
             URI uri = new URI("http", null, url, Integer.parseInt(port), "/airport/aircraft", "code="+code, null);
             HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
             connection.setRequestMethod("GET");
@@ -227,13 +223,14 @@ public class Connection {
             if (responseCode == 200) {
                 System.out.println("Server is online.");
                 BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                String inputLine;
-                while ((inputLine = in.readLine()) != null) {
-                    String [] data = inputLine.split(",");
-                    aircraftOnPremise.add(data[0] + " - " + data[1] + " - " + data[2] + " - " + data[3]);
-                }
+
+                List<String> aircraft = new ArrayList<>();
+                String[] data = in.readLine().split("},");
+
+
+
                 in.close();
-                return aircraftOnPremise;
+                return aircraft;
             } else {
                 System.out.println("Server is offline.");
                 return new ArrayList<>();

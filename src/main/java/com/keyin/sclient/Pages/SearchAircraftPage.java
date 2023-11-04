@@ -1,9 +1,12 @@
 package com.keyin.sclient.Pages;
 
 import com.keyin.sclient.Connection;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SearchAircraftPage {
@@ -12,14 +15,10 @@ public class SearchAircraftPage {
     public SearchAircraftPage(String code){
 
         List<String> planes = Connection.getAircraftOnPremise(code);
-        JTextArea textArea = new JTextArea();
+        JTextArea textArea = new JTextArea(String.valueOf(planes));
         textArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(textArea);
         scrollPane.setBounds(10, 20, 400, 400);
-
-        for (String plane : planes) {
-            textArea.append(plane + "\n");
-        }
 
         JPanel panel = new JPanel();
         panel.setLayout(null);
@@ -36,4 +35,19 @@ public class SearchAircraftPage {
         frame.add(panel);
         frame.setVisible(true);
     }
+
+//    private List<String> getAirportData(String code) {
+//        List<String> data = new ArrayList<>();
+//        JSONArray airports = new JSONArray(Connection.getAirportByCode());
+//
+//        for (int i = 0; i < airports.length(); i++) {
+//            JSONObject jsonObject = airports.getJSONObject(i);
+//            JSONArray planes = jsonObject.getJSONArray("onPremisePlanes");
+//            StringBuilder stringBuilder = new StringBuilder();
+//
+//            data.add(planes);
+//
+//        }
+//        return data;
+//    }
 }
