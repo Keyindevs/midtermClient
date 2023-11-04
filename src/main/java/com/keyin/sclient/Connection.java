@@ -245,12 +245,12 @@ public class Connection {
             e.printStackTrace();
             return "Error";
 
-        }}}
+        }}
 
 
-        public static String getPassengerbyName(String name){
+    public static String getPassengerbyLastName(String name){
         try {
-            URI uri = new URI("http", null, url, Integer.parseInt(port), "/passenger?name="+name, null, null);
+            URI uri = new URI("http", null, url, Integer.parseInt(port), "/passenger?lastName="+name, null, null);
             HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
             connection.setRequestMethod("GET");
             connection.connect();
@@ -275,4 +275,3 @@ public class Connection {
             return "Error";
 
         }}}
-        }
