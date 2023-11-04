@@ -193,6 +193,33 @@ public class Connection {
             return "Error";
         }
     }
+    public static String getPlane(String code){
+        try {
+            URI uri = new URI("http", null, url, Integer.parseInt(port), "/airport/aircraft", "code="+code, null);
+            HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
+            connection.setRequestMethod("GET");
+            connection.connect();
+            int responseCode = connection.getResponseCode();
+            if (responseCode == 200) {
+                System.out.println("Server is online.");
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in.close();
+                System.out.println(response);
+                return response.toString();
+            } else {
+                System.out.println("Server is offline.");
+                return "Server Offline";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Error";
+        }
+    }
     public static String getAircraft(){
         try {
             URI uri = new URI("http", null, url, Integer.parseInt(port), "/aircraft", null, null);

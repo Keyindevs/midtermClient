@@ -227,6 +227,7 @@ public class MainMenu implements ActionListener{
 //            new SearchCitiesPage();
 //            frame.dispose();
 //        }
+
         if (e.getSource() == searchAirportsButton) {
             String airport = JOptionPane.showInputDialog("Enter airport code or name");
             if (airport != null) {
@@ -236,10 +237,13 @@ public class MainMenu implements ActionListener{
                 JOptionPane.showMessageDialog(frame, "Please enter a valid airport code or name.");
             }
         }
-//        if (e.getSource() == searchAircraftButton) {
-//            new SearchAircraftPage();
-//            frame.dispose();
-//        }
+
+        if (e.getSource() == searchAircraftButton) {
+            String aircraft = JOptionPane.showInputDialog("Enter Airport Code");
+            new SearchAircraftPage(aircraft);
+            frame.dispose();
+        }
+
         if (e.getSource() == searchPassengersButton) {
             String lastName = JOptionPane.showInputDialog("Enter passenger last name");
             if (lastName != null) {
@@ -250,6 +254,7 @@ public class MainMenu implements ActionListener{
             }
 
         }
+
 //        if (e.getSource() == searchFlightsButton) {
 //            new SearchFlightsPage();
 //            frame.dispose();

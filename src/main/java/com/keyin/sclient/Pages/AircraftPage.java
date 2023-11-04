@@ -52,22 +52,24 @@ public class AircraftPage implements ActionListener {
 
         for (int i = 0; i < aircraftArray.length(); i++) {
             JSONObject aircraftObject = aircraftArray.getJSONObject(i);
-            int id = Integer.parseInt(aircraftObject.getString("id"));
+            String id = aircraftObject.getString("id");
+            // only other issue was thinking id was an int
             String type = aircraftObject.getString("type");
             String airlineName = aircraftObject.getString("airlineName");
             int capacity = aircraftObject.getInt("numberOfPassengers");
             String airport = aircraftObject.getString("airport");
-            String boardedPassengers = aircraftObject.getString("boardedPassengers");
-
+            // NGL me (alex) was being lazy and i never implemented the boarded passengers on my half of the project
+            // this is why i commented it out
+            // works now though
+            // String boardedPassengers = aircraftObject.getString("boardedPassengers");
+            System.out.println(aircraftObject.get("boardedPassengers"));
             if (!type.toLowerCase().contains("null") &&
                     !airlineName.toLowerCase().contains("null") &&
                     !airport.toLowerCase().contains("null") &&
-                    !boardedPassengers.toLowerCase().contains("null") &&
                     !type.toLowerCase().contains("default") &&
                     !airlineName.toLowerCase().contains("default") &&
-                    !airport.toLowerCase().contains("default") &&
-                    !boardedPassengers.toLowerCase().contains("default")) {
-                aircraftInfoList.add("ID: " + id + " | Type: " + type + " | Airline Name: " + airlineName + " | Capacity: " + capacity + " | Airport: " + airport + " | Boarded Passengers: " + boardedPassengers);
+                    !airport.toLowerCase().contains("default")) {
+                aircraftInfoList.add("ID: " + id + " | Type: " + type + " | Airline Name: " + airlineName + " | Airport: " + airport + "\n");
             }
         }
 
