@@ -13,11 +13,11 @@ public class MainMenu implements ActionListener{
     JButton viewAirportsButton = new JButton("View Airports");
     JButton viewAircraftButton = new JButton("View Aircraft");
 
-    JButton searchFlightsButton = new JButton("Search Flights");
+    JButton searchFlightsButton = new JButton("Search Passenger Flights");
     JButton searchPassengersButton = new JButton("Search Passengers");
-    JButton searchCitiesButton = new JButton("Search Cities");
+    JButton searchCitiesButton = new JButton("Search City");
     JButton searchAirportsButton = new JButton("Search Airports");
-    JButton searchAircraftButton = new JButton("Search Aircraft");
+    JButton searchAircraftButton = new JButton("On Premise Aircraft");
 
     JButton addFlightsButton = new JButton("Add Flights");
     JButton addPassengersButton = new JButton("Add Passengers");
@@ -52,34 +52,42 @@ public class MainMenu implements ActionListener{
         panel.add(searchFlightsButton);
         panel.add(addFlightsButton);
         panel.add(backButton);
+
         viewAirportsButton.addActionListener(this);
         viewCitiesButton.addActionListener(this);
         viewPassengersButton.addActionListener(this);
         viewFlightsButton.addActionListener(this);
         viewAircraftButton.addActionListener(this);
+
         searchAircraftButton.addActionListener(this);
         searchAirportsButton.addActionListener(this);
         searchPassengersButton.addActionListener(this);
         searchFlightsButton.addActionListener(this);
+        searchCitiesButton.addActionListener(this);
+
         addAircraftButton.addActionListener(this);
         addAirportsButton.addActionListener(this);
         addCitiesButton.addActionListener(this);
         addPassengersButton.addActionListener(this);
         addFlightsButton.addActionListener(this);
+
         viewAirportsButton.setFocusable(false);
         viewCitiesButton.setFocusable(false);
         viewPassengersButton.setFocusable(false);
         viewFlightsButton.setFocusable(false);
+
         searchAircraftButton.setFocusable(false);
         searchAirportsButton.setFocusable(false);
         searchCitiesButton.setFocusable(false);
         searchPassengersButton.setFocusable(false);
         searchFlightsButton.setFocusable(false);
+
         addAircraftButton.setFocusable(false);
         addAirportsButton.setFocusable(false);
         addCitiesButton.setFocusable(false);
         addPassengersButton.setFocusable(false);
         addFlightsButton.setFocusable(false);
+
         viewAirportsButton.setFocusable(false);
         viewCitiesButton.setFocusable(false);
         viewPassengersButton.setFocusable(false);
@@ -223,10 +231,15 @@ public class MainMenu implements ActionListener{
             new FlightsPage();
             frame.dispose();
         }
-//        if (e.getSource() == searchCitiesButton) {
-//            new SearchCitiesPage();
-//            frame.dispose();
-//        }
+        if (e.getSource() == searchCitiesButton) {
+            String city = JOptionPane.showInputDialog("Enter city name");
+            if (city != null) {
+                new SearchCityPage(city);
+                frame.dispose();
+            } else {
+                JOptionPane.showMessageDialog(frame, "Please enter a valid city name.");
+            }
+        }
 
         if (e.getSource() == searchAirportsButton) {
             String airport = JOptionPane.showInputDialog("Enter airport code or name");
@@ -255,30 +268,49 @@ public class MainMenu implements ActionListener{
 
         }
 
-//        if (e.getSource() == searchFlightsButton) {
-//            new SearchFlightsPage();
-//            frame.dispose();
-//        }
-//        if (e.getSource() == addCitiesButton) {
-//            new AddCitiesPage();
-//            frame.dispose();
-//        }
-//        if (e.getSource() == addAirportsButton) {
-//            new AddAirportsPage();
-//            frame.dispose();
-//        }
-//        if (e.getSource() == addAircraftButton) {
-//            new AddAircraftPage();
-//            frame.dispose();
-//        }
-//        if (e.getSource() == addPassengersButton) {
-//            new AddPassengersPage();
-//            frame.dispose();
-//        }
-//        if (e.getSource() == addFlightsButton) {
-//            new AddFlightsPage();
-//            frame.dispose();
-//        }
+        if (e.getSource() == searchFlightsButton) {
+            String passengerName = JOptionPane.showInputDialog("Enter passenger Identification");
+            new SearchFlightsPage(passengerName);
+            frame.dispose();
+        }
+        if (e.getSource() == addCitiesButton) {
+            String name = JOptionPane.showInputDialog("Enter city name");
+            String state = JOptionPane.showInputDialog("Enter city state/province");
+            int population = Integer.parseInt(JOptionPane.showInputDialog("Enter city population"));
+            Connection.addCity(name, state, population);
+            JOptionPane.showMessageDialog(frame, "City Added Successfully");
+        }
+        if (e.getSource() == addAirportsButton) {
+String name = JOptionPane.showInputDialog("Enter airport name");
+            String code = JOptionPane.showInputDialog("Enter airport code");
+            String city = JOptionPane.showInputDialog("Enter city name");
+            Connection.addAirport(name, code, city);
+            JOptionPane.showMessageDialog(frame, "Airport Added Successfully");
+        }
+        if (e.getSource() == addAircraftButton) {
+            String type = JOptionPane.showInputDialog("Enter aircraft type");
+            String airlineName = JOptionPane.showInputDialog("Enter airline name");
+            int numberOfPassengers = Integer.parseInt(JOptionPane.showInputDialog("Enter number of passengers"));
+            String airport = JOptionPane.showInputDialog("Enter airport code");
+            String id = JOptionPane.showInputDialog("Enter aircraft id");
+            Connection.addAircraft(type, airlineName, numberOfPassengers, airport, id);
+            JOptionPane.showMessageDialog(frame, "Aircraft Added Successfully");
+        }
+        if (e.getSource() == addPassengersButton) {
+            String firstName = JOptionPane.showInputDialog("Enter passenger first name");
+            String lastName = JOptionPane.showInputDialog("Enter passenger last name");
+            String homeTown = JOptionPane.showInputDialog("Enter passenger hometown");
+            Connection.addPassenger(firstName, lastName, homeTown);
+            JOptionPane.showMessageDialog(frame, "Passenger Added Successfully");
+        }
+        if (e.getSource() == addFlightsButton) {
+            String origin = JOptionPane.showInputDialog("Enter flight origin");
+            String destination = JOptionPane.showInputDialog("Enter flight destination");
+            String aircraft = JOptionPane.showInputDialog("Enter aircraft id");
+            String id = JOptionPane.showInputDialog("Enter flight id");
+            Connection.addFlight(origin, destination, aircraft);
+            JOptionPane.showMessageDialog(frame, "Flight Added Successfully");
+        }
 
 
     }

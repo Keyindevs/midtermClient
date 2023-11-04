@@ -1,8 +1,8 @@
 package com.keyin.sclient;
-import com.keyin.sclient.Pages.MainMenu;
+
+
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
@@ -100,6 +100,66 @@ public class Connection {
         }
     }
 
+    public static String getCity(String name) {
+        try {
+            URI uri = new URI("http", null, url, Integer.parseInt(port), "/city", "name="+name, null);
+            HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
+            connection.setRequestMethod("GET");
+            connection.connect();
+            int responseCode = connection.getResponseCode();
+            if (responseCode == 200) {
+                System.out.println("Server is online.");
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in.close();
+                System.out.println(response);
+                return response.toString();
+            } else {
+                System.out.println("Server is offline.");
+                return "Server Offline";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Error";
+        }
+    }
+
+    public static String getPassengerFlights(String name) {
+        try {
+            URI uri = new URI("http", null, url, Integer.parseInt(port), "/passenger/flights", "id="+name, null);
+            System.out.println(uri);
+            HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
+            connection.setRequestMethod("GET");
+            connection.connect();
+            int responseCode = connection.getResponseCode();
+            System.out.println(responseCode);
+            if (responseCode == 200) {
+                System.out.println("Server is online.");
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+                System.out.println("here");
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in.close();
+                System.out.println(response);
+                System.out.println("here");
+                return response.toString();
+            } else {
+                System.out.println("Server is offline.");
+                return "Server Offline";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Error";
+        }
+    }
+
     public static List<String> getCityNamesAndStates(String jsonData) {
         List<String> cityNamesAndStates = new ArrayList<>();
 
@@ -120,6 +180,9 @@ public class Connection {
                 if (!uniqueCities.contains(uniqueKey)) {
                     uniqueCities.add(uniqueKey);
                     cityNamesAndStates.add(cityName + ", " + state);
+                }
+                else {
+                    cityNamesAndStates.add(cityName + ", " + state + " (duplicate)");
                 }
             }
         }
@@ -275,7 +338,6 @@ public class Connection {
 
         }}
 
-
     public static String getPassengerbyLastName(String name){
         try {
             URI uri = new URI("http", null, url, Integer.parseInt(port), "/passenger"+name, null, null);
@@ -313,7 +375,70 @@ public class Connection {
             connection.connect();
             int responseCode = connection.getResponseCode();
             if (responseCode == 200) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                in.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
+    public static void addCity(String name, String state, int population){
+        try {
+            URI uri = new URI("http", null, url, Integer.parseInt(port), "/city", "name="+name+"state="+state+"population="+population, null);
+            HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
+            connection.setRequestMethod("POST");
+            connection.connect();
+            int responseCode = connection.getResponseCode();
+            if (responseCode == 200) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                in.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void addAirport(String name, String code, String city) {
+        try {
+            URI uri = new URI("http", null, url, Integer.parseInt(port), "/airport", "name="+name+"&code="+code+"&city="+city, null);
+            HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
+            connection.setRequestMethod("POST");
+            connection.connect();
+            int responseCode = connection.getResponseCode();
+            if (responseCode == 200) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                in.close();
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void addPassenger(String firstName, String lastName, String homeTown) {
+        try {
+            URI uri = new URI("http", null, url, Integer.parseInt(port), "/passenger", "firstName="+firstName+"&lastName="+lastName+"&homeTown="+homeTown, null);
+            HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
+            connection.setRequestMethod("POST");
+            connection.connect();
+            int responseCode = connection.getResponseCode();
+            if (responseCode == 200) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                in.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void addFlight(String orgin, String destination, String aircraft) {
+        try {
+            URI uri = new URI("http", null, url, Integer.parseInt(port), "/flight", "origin="+orgin+"destination="+destination+"aircraft="+aircraft, null);
+            HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
+            connection.setRequestMethod("POST");
+            connection.connect();
+            int responseCode = connection.getResponseCode();
+            if (responseCode == 200) {
                 BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 in.close();
             }
