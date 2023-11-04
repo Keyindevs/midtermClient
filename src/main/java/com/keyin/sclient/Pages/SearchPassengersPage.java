@@ -71,7 +71,7 @@ public class SearchPassengersPage implements ActionListener {
                 passengerInfoList.add("First name: " + firstName + "\n" +
                         "Last name: " + lastName + "\n" +
                         "Home town: " + homeTown + "\n" +
-                        "Flights: " + flights + "\n");
+                        "Flights: " + flights + "\n" + "\n");
             }
         }
         return passengerInfoList;
