@@ -69,7 +69,7 @@ public class ConnectPage implements ActionListener {
                     JOptionPane.showMessageDialog(frame, "Server is offline.");
                 }
             }
-            else if(ip.equals("") && portNum.equals("")) {
+            else if(ip.isEmpty() && portNum.isEmpty()) {
                 ip = "localhost";
                 portNum = "8080";
                 Connection connection = new Connection(ip, portNum, null, null);
