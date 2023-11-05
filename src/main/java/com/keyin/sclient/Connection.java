@@ -214,25 +214,43 @@ public class Connection {
 
     public static List<String> getAircraftOnPremise(String code) {
         try {
-            URI uri = new URI("http", null, url, Integer.parseInt(port), "/airport/aircraft", "code="+code, null);
+            URI uri = new URI("http", null, url, Integer.parseInt(port), "/airport/aircraft", "code=" + code, null);
             HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
             connection.setRequestMethod("GET");
             connection.connect();
             int responseCode = connection.getResponseCode();
             System.out.println(responseCode);
             if (responseCode == 200) {
-                System.out.println("Server is online.");
+                System.out.println("Server is online");
                 BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
-                List<String> aircraft = new ArrayList<>();
-                String[] data = in.readLine().split("},");
+                StringBuilder response = new StringBuilder();
+                String line;
 
-
+                while ((line = in.readLine()) != null) {
+                    response.append(line);
+                }
 
                 in.close();
-                return aircraft;
+
+                JSONArray jsonArray = new JSONArray(response.toString());
+
+                List<String> aircraftList = new ArrayList<>();
+
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject aircraftObject = jsonArray.getJSONObject(i);
+                    String id = aircraftObject.getString("id");
+                    String type = aircraftObject.getString("type");
+                    String airlineName = aircraftObject.getString("airlineName");
+                    String airport = aircraftObject.getString("airport");
+
+                    String formattedAircraft = "ID: " + id + " | Type: " + type + " | Airline Name: " + airlineName + " | Airport: " + airport;
+                    aircraftList.add(formattedAircraft);
+                }
+
+                return aircraftList;
             } else {
-                System.out.println("Server is offline.");
+                System.out.println("Server is offline");
                 return new ArrayList<>();
             }
         } catch (Exception e) {
