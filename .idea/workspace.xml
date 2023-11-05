@@ -6,12 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="90be35dd-109f-44a0-b7ce-6399cbdb2d25" name="Changes" comment="Stuff is working but formatting is not correct">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/src/main/java/com/keyin/sclient/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/keyin/sclient/Connection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/keyin/sclient/Pages/AircraftPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/keyin/sclient/Pages/AircraftPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/keyin/sclient/Pages/SearchAircraftPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/keyin/sclient/Pages/SearchAircraftPage.java" afterDir="false" />
-=======
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/keyin/sclient/Pages/SearchPassengersPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/keyin/sclient/Pages/SearchPassengersPage.java" afterDir="false" />
->>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
