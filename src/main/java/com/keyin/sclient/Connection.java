@@ -5,10 +5,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.*;
 import java.net.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Connection {
     private static String url;
@@ -32,6 +29,39 @@ public class Connection {
     public void setPath(String path) {
         Connection.path = path;
     }
+
+    /**
+     * Sends a GET request to the server
+     * this request contains no request parameters
+     */
+    private static String getRequest(String path) {
+        try {
+            URI uri = new URI("http", null, url, Integer.parseInt(port), path, null, null);
+            HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
+            connection.setRequestMethod("GET");
+            connection.connect();
+            int responseCode = connection.getResponseCode();
+            if (responseCode == 200) {
+                System.out.println("Server is online.");
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in.close();
+                System.out.println(response);
+                return response.toString();
+            } else {
+                System.out.println("Server is offline.");
+                return "Server Offline";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Error";
+        }
+    }
+
 
     public static String getUrl() {
         return url;
@@ -73,31 +103,7 @@ public class Connection {
     // get list of cities from server
 
     public static String getCities() {
-        try {
-            URI uri = new URI("http", null, url, Integer.parseInt(port), "/cities", null, null);
-            HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
-            connection.setRequestMethod("GET");
-            connection.connect();
-            int responseCode = connection.getResponseCode();
-            if (responseCode == 200) {
-                System.out.println("Server is online.");
-                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                StringBuilder response = new StringBuilder();
-                String inputLine;
-                while ((inputLine = in.readLine()) != null) {
-                    response.append(inputLine);
-                }
-                in.close();
-                System.out.println(response);
-                return response.toString();
-            } else {
-                System.out.println("Server is offline.");
-                return "Server Offline";
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "Error";
-        }
+        return getRequest("/cities");
     }
 
     public static String getCity(String name) {
@@ -203,59 +209,60 @@ public class Connection {
         return airportsInCity;
     }
     public static String getAirports() {
+        return getRequest("/airports");
+    }
+
+    public static List<String> getAircraftOnPremise(String code) {
         try {
-            URI uri = new URI("http", null, url, Integer.parseInt(port), "/airports", null, null);
+            URI uri = new URI("http", null, url, Integer.parseInt(port), "/airport/aircraft", "code=" + code, null);
+            System.out.println(uri);
             HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
             connection.setRequestMethod("GET");
             connection.connect();
             int responseCode = connection.getResponseCode();
+            System.out.println(responseCode);
             if (responseCode == 200) {
-                System.out.println("Server is online.");
+                System.out.println("Server is online");
                 BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 StringBuilder response = new StringBuilder();
-                String inputLine;
-                while ((inputLine = in.readLine()) != null) {
-                    response.append(inputLine);
+                String line;
+
+                while ((line = in.readLine()) != null) {
+                    response.append(line);
                 }
+
                 in.close();
-                System.out.println(response);
-                return response.toString();
+
+                JSONArray jsonArray = new JSONArray(response.toString());
+
+                List<String> aircraftList = new ArrayList<>();
+
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject aircraftObject = jsonArray.getJSONObject(i);
+                    String id = aircraftObject.getString("id");
+                    String type = aircraftObject.getString("type");
+                    String airlineName = aircraftObject.getString("airlineName");
+                    String airport = aircraftObject.getString("airport");
+
+                    String formattedAircraft = "ID: " + id + " | Type: " + type + " | Airline Name: " + airlineName + " | Airport: " + airport;
+                    aircraftList.add(formattedAircraft);
+                }
+                System.out.println(aircraftList);
+                return aircraftList;
             } else {
-                System.out.println("Server is offline.");
-                return "Server Offline";
+                System.out.println("Server is offline");
+                return new ArrayList<>();
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return "Error";
+            return new ArrayList<>();
         }
     }
+
     public static String getFlights(){
-        try {
-            URI uri = new URI("http", null, url, Integer.parseInt(port), "/flights", null, null);
-            HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
-            connection.setRequestMethod("GET");
-            connection.connect();
-            int responseCode = connection.getResponseCode();
-            if (responseCode == 200) {
-                System.out.println("Server is online.");
-                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                StringBuilder response = new StringBuilder();
-                String inputLine;
-                while ((inputLine = in.readLine()) != null) {
-                    response.append(inputLine);
-                }
-                in.close();
-                System.out.println(response);
-                return response.toString();
-            } else {
-                System.out.println("Server is offline.");
-                return "Server Offline";
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "Error";
-        }
+        return getRequest("/flights");
     }
+
     public static String getPlane(String code){
         try {
             URI uri = new URI("http", null, url, Integer.parseInt(port), "/airport/aircraft", "code="+code, null);
@@ -283,60 +290,13 @@ public class Connection {
             return "Error";
         }
     }
+
     public static String getAircraft(){
-        try {
-            URI uri = new URI("http", null, url, Integer.parseInt(port), "/aircraft", null, null);
-            HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
-            connection.setRequestMethod("GET");
-            connection.connect();
-            int responseCode = connection.getResponseCode();
-            if (responseCode == 200) {
-                System.out.println("Server is online.");
-                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                StringBuilder response = new StringBuilder();
-                String inputLine;
-                while ((inputLine = in.readLine()) != null) {
-                    response.append(inputLine);
-                }
-                in.close();
-                System.out.println(response);
-                return response.toString();
-            } else {
-                System.out.println("Server is offline.");
-                return "Server Offline";
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "Error";
-        }
+        return getRequest("/aircraft");
     }
     public static String getPassengers(){
-        try {
-            URI uri = new URI("http", null, url, Integer.parseInt(port), "/passengers", null, null);
-            HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
-            connection.setRequestMethod("GET");
-            connection.connect();
-            int responseCode = connection.getResponseCode();
-            if (responseCode == 200) {
-                System.out.println("Server is online.");
-                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                StringBuilder response = new StringBuilder();
-                String inputLine;
-                while ((inputLine = in.readLine()) != null) {
-                    response.append(inputLine);
-                }
-                in.close();
-
-                return response.toString();
-            } else {
-                System.out.println("Server is offline.");
-                return "Server Offline";
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "Error";
-
-        }}
+        return getRequest("/passengers");
+    }
 
     public static String getPassengerbyLastName(String name){
         try {
@@ -385,7 +345,7 @@ public class Connection {
 
     public static void addCity(String name, String state, int population){
         try {
-            URI uri = new URI("http", null, url, Integer.parseInt(port), "/city", "name="+name+"state="+state+"population="+population, null);
+            URI uri = new URI("http", null, url, Integer.parseInt(port), "/city", "name="+name+"&state="+state+"&population="+population, null);
             HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
             connection.setRequestMethod("POST");
             connection.connect();
@@ -431,9 +391,10 @@ public class Connection {
         }
     }
 
+    
     public static void addFlight(String orgin, String destination, String aircraft) {
         try {
-            URI uri = new URI("http", null, url, Integer.parseInt(port), "/flight", "origin="+orgin+"destination="+destination+"aircraft="+aircraft, null);
+            URI uri = new URI("http", null, url, Integer.parseInt(port), "/flight", "origin="+orgin+"&destination="+destination+"&aircraft="+aircraft, null);
             HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
             connection.setRequestMethod("POST");
             connection.connect();
