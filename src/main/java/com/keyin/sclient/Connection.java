@@ -215,6 +215,7 @@ public class Connection {
     public static List<String> getAircraftOnPremise(String code) {
         try {
             URI uri = new URI("http", null, url, Integer.parseInt(port), "/airport/aircraft", "code=" + code, null);
+            System.out.println(uri);
             HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
             connection.setRequestMethod("GET");
             connection.connect();
@@ -223,7 +224,6 @@ public class Connection {
             if (responseCode == 200) {
                 System.out.println("Server is online");
                 BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-
                 StringBuilder response = new StringBuilder();
                 String line;
 
@@ -247,7 +247,7 @@ public class Connection {
                     String formattedAircraft = "ID: " + id + " | Type: " + type + " | Airline Name: " + airlineName + " | Airport: " + airport;
                     aircraftList.add(formattedAircraft);
                 }
-
+                System.out.println(aircraftList);
                 return aircraftList;
             } else {
                 System.out.println("Server is offline");

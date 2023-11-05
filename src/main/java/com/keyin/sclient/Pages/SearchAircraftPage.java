@@ -15,7 +15,7 @@ public class SearchAircraftPage {
     public SearchAircraftPage(String code){
 
         List<String> planes = Connection.getAircraftOnPremise(code);
-        JTextArea textArea = new JTextArea(String.valueOf(planes));
+        JTextArea textArea = new JTextArea(String.valueOf(planes).replace("[","").replace("]","").replace(", ","\n"));
         textArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(textArea);
         scrollPane.setBounds(10, 20, 400, 400);
